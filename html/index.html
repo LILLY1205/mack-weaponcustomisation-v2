@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weapon Workshop</title>
+  <link rel="stylesheet" href="index.css" type="text/css" />
+</head>
+<body>
+  <!-- Mods Panel (keeps camera view unobstructed) -->
+  <div id="container" class="hidden">
+    <div id="close_btn" title="Close"></div>
+    <h2 id="header" style="text-align:center">Weapon Mods</h2>
+<div id="pay_weapos" title="Craft Changes">Craft Changes</div>
+    <div id="component_for_buy">Estimated Price: $0</div>
+
+    <div id="cam_panel" class="cam-panel">
+      <div class="cam-title">Camera</div>
+      <div class="cam-row">
+        <div id="cam_left" class="cam-btn">Left</div>
+        <div id="cam_right" class="cam-btn">Right</div>
+      </div>
+      <div class="cam-row">
+        <div id="cam_up" class="cam-btn">Up</div>
+        <div id="cam_down" class="cam-btn">Down</div>
+      </div>
+      <div class="cam-row">
+        <div id="cam_zoom_in" class="cam-btn">Zoom +</div>
+        <div id="cam_zoom_out" class="cam-btn">Zoom -</div>
+      </div>
+    </div>
+
+    <div id="shared_table" class="grid-container"></div>
+  </div>
+
+  <!-- Crafting Panel (center overlay) -->
+  <div id="craftingUI" class="hidden">
+    <div class="menu-background"></div>
+    <div class="menu-content">
+      <button id="craft_close_btn" class="close-button" title="Close">×</button>
+      <div class="menu-container">
+        <div class="categories">
+          <h2 id="categoriesTitle">Categories</h2>
+          <div id="categoryList"></div>
+        </div>
+        <div class="items">
+          <h2 id="itemsTitle">Craftable Items</h2>
+          <div id="itemGrid" class="item-grid"></div>
+        </div>
+        <div class="details">
+          <h2 id="detailsTitle">Item Details</h2>
+          <div id="itemDetails"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js" type="text/javascript"></script>
+</body>
+</html>

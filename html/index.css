@@ -1,0 +1,81 @@
+@font-face {
+  font-family: crock;
+  src: url(crock.ttf);
+}
+* { font-family: crock; box-sizing: inherit; touch-action: manipulation; }
+html, body { margin: 0; padding: 0; height: 100%; background: transparent; }
+.hidden { display: none !important; }
+
+/* Close button (Mods) */
+#close_btn { position:absolute; top: 18px; right: 18px; width: 28px; height: 28px; line-height: 28px; text-align:center; color:#fff; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.25); border-radius: 6px; cursor: pointer; }
+#close_btn::after { content: '×'; font-size: 18px; font-weight: 700; font-family: crock, system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
+#close_btn:hover { background: rgba(255,255,255,0.2); }
+
+#container {
+  -webkit-user-drag: none; user-select: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;
+  display: block; padding: 25px; color: #fff; position: absolute; top: 50%; left: 13%; transform: translate(-50%, -50%);
+  width: 380px; max-width: 381px; height: 720px; max-height: 721px;
+  background-image: url('images/background.png'); background-size: 100% 100%;
+}
+
+/* Keep space reserved for the vertical scrollbar so content width doesn't shift */
+.grid-container { overflow-y: auto; overflow-x: hidden; position: absolute; width: 350px; max-width: 350px; max-height: 420px; top: 210px; left: 40px; scrollbar-gutter: stable both-edges; }
+
+/* Two-column layout: label and controls. Prevent wrapping/overflow into the arrows. */
+.grid-item { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 12px; align-items: center; line-height: 20px; min-height: 52px; background-image: url('images/button.png'); background-size: 100% 100%; width: 100%; height: auto; color:#acacac; font-size: 14px; padding: 6px 28px 6px 40px; box-sizing: border-box; white-space: nowrap; }
+.grid-item:hover { background-image: url('images/sbutton.png'); background-size: 100% 100%; color:#fff; }
+.grid-item.section { background-image: url('images/button.png'); color:#fff; font-size: 14px; line-height: 32px; height: 32px; text-align: center; pointer-events: none; white-space: normal; }
+.grid-item.disabled { opacity: 0.55; filter: grayscale(0.3); }
+.grid-item.disabled:hover { background-image: url('images/button.png'); color:#bbb; }
+.grid-item.disabled .controls { pointer-events: none; filter: grayscale(1); opacity: 0.7; }
+
+#pay_weapos { position: absolute; width: 180px; height: 50px; top: 635px; right: 50px; background-image: url('images/button.png'); background-size: 100% 100%; cursor: pointer; color:#fff; text-align:center; line-height:50px; font-weight:800; }
+#pay_weapos:hover { background-image: url('images/sbutton.png'); }
+#component_for_buy { position: absolute; color:#e4e4e4; text-align:center; font-size: 16px; line-height: 50px; width: 260px; height: 50px; top: 635px; left: 40px; background-image: url('images/button.png'); background-size: 100% 100%; }
+
+/* Camera controls panel */
+.cam-panel { position: absolute; top: 120px; left: 40px; right: 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; padding: 6px 8px; z-index: 10; pointer-events: auto; }
+.cam-title { font-size: 12px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; text-align: center; margin-right: 8px; }
+.cam-row { display: flex; gap: 6px; }
+.cam-btn { padding: 3px 8px; background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.25); border-radius: 6px; cursor: pointer; font-weight: 800; user-select: none; font-size: 12px; }
+.cam-btn:hover { background: rgba(0,0,0,0.75); }
+
+/* Label must be allowed to shrink and never wrap; truncate with ellipsis */
+.labelbox { display: flex; flex-direction: column; min-width: 0; }
+.label { font-size: 14px; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.subnote { font-size: 11px; color: #cfcfcf; opacity: 0.9; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 2px; }
+.controls { display: inline-flex; align-items: center; gap: 6px; }
+.btn-left { width:24px; height:24px; background-image: url('images/l_arrow.png'); background-size: 100% 100%; cursor: pointer; }
+.btn-left:hover { background-image: url('images/al_arrow.png'); }
+.btn-right { width:24px; height:24px; background-image: url('images/r_arrow.png'); background-size: 100% 100%; cursor: pointer; }
+.btn-right:hover { background-image: url('images/ar_arrow.png'); }
+.row-value { min-width: 28px; text-align:center; color:#fff; font-size: 14px; font-weight: 800; }
+
+/* Crafting overlay styles (adapted from bulletcraft) */
+#craftingUI { position: fixed; inset: 0; display: none; justify-content: center; align-items: center; }
+#craftingUI:not(.hidden) { display: flex; }
+.menu-background { position: absolute; width: 75vw; height: 75vh; max-width: 1440px; max-height: 810px; background-image: url('images/background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 1; border-radius: 8px; }
+.menu-content { position: absolute; width: 69.3vw; height: 71.25vh; max-width: 1330px; max-height: 769px; display: flex; flex-direction: column; z-index: 2; margin: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.menu-container { display: flex; height: 100%; max-height: calc(71.25vh - 2rem); padding: 1rem; gap: 1rem; overflow: hidden; }
+.categories, .items, .details { overflow-y: auto; width: 15%; background-color: rgba(0, 0, 0, 0.7); padding: 1rem; border-radius: 8px; display: flex; flex-direction: column; }
+.items { width: 55%; }
+.details { width: 25%; }
+.category-button, .item-card, .action-button, .close-button { background-color: rgba(139, 0, 0, 0.7); color: #ffffff; border: 1px solid #8b0000; padding: 0.5rem 1rem; margin-bottom: 0.5rem; cursor: pointer; transition: background-color 0.3s; font-family: crock, serif; border-radius: 4px; }
+.item-card { padding: 10px; text-align: center; }
+.close-button { position: absolute; top: 0.5rem; right: 0.5rem; font-size: 1.2rem; z-index: 3; }
+.category-button:hover, .item-card:hover, .action-button:hover, .close-button:hover { background-color: rgba(139, 0, 0, 0.9); }
+.item-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+.item-image { width: 100%; height: 4rem; object-fit: contain; }
+.ingredient-list { list-style-type: none; padding: 0; margin-top: 1rem; }
+.ingredient-item { display: flex; align-items: center; margin-bottom: 0.5rem; }
+.ingredient-item span { color:#ffffff; font-size: 14px; }
+.ingredient-image { width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; object-fit: contain; }
+
+/* Custom scrollbars for crafting panels */
+#craftingUI ::-webkit-scrollbar { width: 8px; }
+#craftingUI ::-webkit-scrollbar-track { background: transparent; }
+#craftingUI ::-webkit-scrollbar-thumb { background: rgba(139, 0, 0, 0.7); border-radius: 4px; }
+#craftingUI ::-webkit-scrollbar-thumb:hover { background: rgba(139, 0, 0, 0.9); }
+
+/* Crafting headings like original */
+#craftingUI h2 { font-size: 22px; letter-spacing: 0.02em; margin: 0 0 0.5rem 0; color: #fff; text-shadow: 0 0 5px rgba(255,255,255,0.7); }
